@@ -6,14 +6,13 @@
 # ------------------------------------------------------------------------------
 # 1. Environment Variables & Secrets
 # ------------------------------------------------------------------------------
-.env
-.env.*
-.env.local
-.env.*.local
+.env*
 !.env.example
 *.pem
 *.key
 *.cert
+*.p12
+*.pfx
 secrets/
 
 # ------------------------------------------------------------------------------
@@ -62,7 +61,7 @@ Icon\r\r
 .idea/
 *.iml
 *.iws
-out/
+/out/
 
 # Eclipse
 .project
@@ -98,16 +97,8 @@ __pycache__/
 build/
 develop-eggs/
 dist/
-downloads/
 eggs/
 .eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -137,6 +128,8 @@ coverage.xml
 # 5. JavaScript / TypeScript / Node.js
 # ------------------------------------------------------------------------------
 node_modules/
+.pnp
+.pnp.*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -155,6 +148,11 @@ build/
 .output/
 .parcel-cache/
 .cache/
+coverage/
+.eslintcache
+*.tsbuildinfo
+next-env.d.ts
+.vercel/
 
 # ------------------------------------------------------------------------------
 # 6. Java / JVM (Maven, Gradle)
@@ -167,7 +165,6 @@ build/
 target/
 .gradle/
 build/
-bin/
 .gradletasknamecache
 
 # ------------------------------------------------------------------------------
@@ -180,14 +177,12 @@ bin/
 # ------------------------------------------------------------------------------
 # 8. Go
 # ------------------------------------------------------------------------------
-/bin/
 *.exe
 *.exe~
 *.dll
 *.dylib
 *.test
 *.out
-vendor/
 
 # ------------------------------------------------------------------------------
 # 9. Logs, Databases & Temporary Files
