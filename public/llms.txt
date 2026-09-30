@@ -1,0 +1,17 @@
+# MarketFools
+
+> MarketFools는 거래 데이터를 분석해 반복되는 실수와 수익을 만드는 행동을 구분하도록 돕는 AI 기반 트레이딩 매매일지 서비스입니다.
+
+## Public page
+
+- [홈](https://marketfools.com/): 제품 개요, 작동 방식, 기능, Foolio AI 데모, 연동 안내와 FAQ
+- [매매 습관 진단](https://marketfools.com/#diagnosis): 반복되는 손실 행동의 예시
+- [작동 방식](https://marketfools.com/#how-it-works): 거래 기록부터 개선 규칙 추적까지의 과정
+- [핵심 기능](https://marketfools.com/#features): Journal, Lens, Brief, Debrief, Replay, Backtest, Playbook, Reports, Foolio AI
+- [자주 묻는 질문](https://marketfools.com/#faq): 출시, 지원 자산, 연동, 데이터와 서비스 범위
+
+## Important context
+
+- 현재 페이지는 출시 예정 제품을 소개하는 공개 랜딩 페이지입니다.
+- MarketFools는 투자자문 서비스가 아니며 특정 종목의 매매를 권유하지 않습니다.
+- 공개된 제품 설명과 FAQ 외의 기능, 성과, 회사 정보는 추정하지 마세요.

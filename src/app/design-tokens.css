@@ -1,0 +1,49 @@
+:root {
+  /* Color */
+  --mf-color-background: #0b1326;
+  --mf-color-surface: #1a2338;
+  --mf-color-surface-raised: #1b2438;
+  --mf-color-surface-active: #22304d;
+  --mf-color-primary-container: #143047;
+  --mf-color-primary-hover: #17395a;
+  --mf-color-badge: #1d3348;
+  --mf-color-success-container: #12362a;
+  --mf-color-text: #dae2fd;
+  --mf-color-text-secondary: #c3c6d7;
+  --mf-color-text-muted: #8aa0c9;
+  --mf-color-text-subtle: #6b7694;
+  --mf-color-text-bright: #c3d3f0;
+  --mf-color-primary: #7dd3fc;
+  --mf-color-primary-bright: #a5e4ff;
+  --mf-color-secondary: #4edea3;
+  --mf-color-secondary-soft: #6fe7b0;
+  --mf-color-data-blue: #38bdf8;
+  --mf-color-indigo: #b4c5ff;
+
+  /* Typography */
+  --mf-font-body: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", sans-serif;
+  --mf-font-mono: "JetBrains Mono", monospace;
+
+  /* Spacing and layout */
+  --mf-space-gutter: 1.5rem;
+  --mf-space-section: 5rem;
+  --mf-container-max: 80rem;
+
+  /* Shape */
+  --mf-radius-card: 1.25rem;
+  --mf-radius-panel: 1.5rem;
+  --mf-radius-pill: 9999px;
+}
+
+.brand-gradient {
+  background-image: linear-gradient(
+    90deg,
+    var(--mf-color-data-blue),
+    var(--mf-color-secondary),
+    #16d2a0
+  );
+  background-clip: text;
+  color: transparent;
+}

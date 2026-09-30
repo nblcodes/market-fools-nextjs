@@ -1,0 +1,1624 @@
+body {
+      background-color: var(--mf-color-background);
+      color: var(--mf-color-text);
+      font-family: var(--mf-font-body);
+      overflow-x: hidden;
+    }
+
+    .font-mono-data {
+      font-family: var(--mf-font-mono);
+    }
+
+    /* ── Claymorphism ──────────────────────────────────────────────
+       Soft raised clay: an outer drop shadow gives the object weight,
+       an inset top highlight rounds the upper edge toward the light,
+       and an inset bottom shade carves the lower edge away from it. */
+    .glass-panel {
+      background: var(--mf-color-surface);
+      border: none;
+      box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.4),
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 2px 1px rgba(255, 255, 255, 0.08),
+        inset 0 -8px 14px rgba(0, 0, 0, 0.3);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+    }
+
+    .glass-panel:not(.tilt-card):hover {
+      transform: translateY(-6px);
+      box-shadow:
+        0 22px 42px rgba(0, 0, 0, 0.45),
+        0 6px 12px rgba(0, 0, 0, 0.22),
+        inset 0 2px 1px rgba(255, 255, 255, 0.12),
+        inset 0 -8px 14px rgba(0, 0, 0, 0.28);
+    }
+
+    /* Cards sit closer to the surface than the big panels — same clay, less relief */
+    .glass-panel.clay-soft {
+      box-shadow:
+        0 9px 20px rgba(0, 0, 0, 0.28),
+        0 3px 6px rgba(0, 0, 0, 0.14),
+        inset 0 2px 1px rgba(255, 255, 255, 0.055),
+        inset 0 -5px 10px rgba(0, 0, 0, 0.18);
+    }
+
+    .glass-panel.clay-soft:not(.tilt-card):hover {
+      transform: translateY(-5px);
+      box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.32),
+        0 4px 8px rgba(0, 0, 0, 0.16),
+        inset 0 2px 1px rgba(255, 255, 255, 0.085),
+        inset 0 -5px 10px rgba(0, 0, 0, 0.17);
+    }
+
+    /* Pressed clay: recessed instead of raised.
+       No background here so the caller's colour tint stays in control. */
+    .clay-inset {
+      box-shadow:
+        inset 0 3px 6px rgba(0, 0, 0, 0.45),
+        inset 0 -2px 1px rgba(255, 255, 255, 0.06);
+    }
+
+    /* Clay button: puffy, with a soft rim light along the top */
+    .clay-btn {
+      border-radius: var(--mf-radius-pill);
+      box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.3),
+        inset 0 2px 1px rgba(255, 255, 255, 0.45),
+        inset 0 -5px 10px rgba(0, 0, 0, 0.18);
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+    }
+
+    .clay-btn:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 12px 24px rgba(0, 0, 0, 0.34),
+        inset 0 2px 1px rgba(255, 255, 255, 0.5),
+        inset 0 -5px 10px rgba(0, 0, 0, 0.16);
+    }
+
+    .clay-btn:active {
+      transform: translateY(1px);
+      box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.3),
+        inset 0 3px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Minimalism: decorative texture and glow removed */
+    .grid-pattern {
+      background-image: none;
+    }
+
+    .radial-glow {
+      background: none;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+
+    .text-engraved {
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.45), 0 1px 0 rgba(255, 255, 255, 0.35);
+    }
+
+    @keyframes ai-sparkle {
+
+      0%,
+      100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.2) rotate(12deg);
+        opacity: 0.75;
+      }
+    }
+
+    .icon-ai-pulse {
+      display: inline-block;
+      animation: ai-sparkle 1.8s ease-in-out infinite;
+    }
+
+    /* Section badge (blue clay pill) */
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: var(--mf-radius-pill);
+      background: var(--mf-color-badge);
+      border: none;
+      color: var(--mf-color-primary);
+      box-shadow:
+        0 6px 14px rgba(0, 0, 0, 0.3),
+        inset 0 2px 1px rgba(125, 211, 252, 0.18),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Hero keeps the mint identity; section badges stay blue */
+    .hero-badge {
+      background: var(--mf-color-success-container);
+      color: var(--mf-color-secondary-soft);
+      box-shadow:
+        0 6px 14px rgba(0, 0, 0, 0.3),
+        inset 0 2px 1px rgba(111, 231, 176, 0.18),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .section-badge .material-symbols-outlined {
+      display: inline-block;
+    }
+
+    /* Per-section badge icon motions */
+    @keyframes badge-heartbeat {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      15% {
+        transform: scale(1.25);
+      }
+
+      30% {
+        transform: scale(1);
+      }
+
+      45% {
+        transform: scale(1.18);
+      }
+
+      60% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes badge-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes badge-float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-3px);
+      }
+    }
+
+    @keyframes badge-swing {
+
+      0%,
+      100% {
+        transform: rotate(-10deg);
+      }
+
+      50% {
+        transform: rotate(10deg);
+      }
+    }
+
+    @keyframes badge-blink {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.45;
+        transform: scale(0.9);
+      }
+    }
+
+    .icon-heartbeat {
+      animation: badge-heartbeat 2s ease-in-out infinite;
+    }
+
+    .icon-spin {
+      animation: badge-spin 4s linear infinite;
+    }
+
+    .icon-float {
+      animation: badge-float 2s ease-in-out infinite;
+    }
+
+    .icon-swing {
+      animation: badge-swing 2.4s ease-in-out infinite;
+    }
+
+    .icon-blink {
+      animation: badge-blink 1.6s ease-in-out infinite;
+    }
+
+    .nav-menu {
+      position: relative;
+    }
+
+    .nav-link {
+      position: relative;
+      z-index: 1;
+      padding: 0.5rem 1rem;
+      border-radius: var(--mf-radius-pill);
+    }
+
+    .nav-link.active {
+      color: var(--mf-color-primary);
+      font-weight: 600;
+    }
+
+    /* Active pill reads as pressed-in clay, tinted blue to match the section badges */
+    .nav-pill {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      border-radius: var(--mf-radius-pill);
+      background: var(--mf-color-primary-container);
+      border: none;
+      box-shadow:
+        inset 0 3px 7px rgba(0, 0, 0, 0.55),
+        inset 0 -2px 1px rgba(125, 211, 252, 0.18),
+        0 0 0 1px rgba(125, 211, 252, 0.14);
+      transition: left 0.35s cubic-bezier(0.22, 1, 0.36, 1), width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .nav-link::after {
+      content: none;
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      border-radius: var(--mf-radius-pill);
+      background-color: var(--mf-color-secondary);
+      transform: translateX(-50%) scale(0);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .nav-link.active::after {
+      transform: translateX(-50%) scale(1);
+      opacity: 1;
+      animation: dot-glow 1.8s ease-in-out infinite;
+    }
+
+    @keyframes dot-glow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 4px 1px rgba(78, 222, 163, 0.6);
+      }
+
+      50% {
+        box-shadow: 0 0 10px 3px rgba(78, 222, 163, 0.9);
+      }
+    }
+
+    /* Scroll Animation Styles */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      /* all 이면 text-shadow·color 까지 보간돼 등장 중 글자 효과가 흔들린다.
+         움직여야 할 두 속성만 지정해 텍스트 효과는 고정한다. */
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* translateY(0) 이 아니라 none 이어야 합성 레이어가 해제된다.
+       레이어가 남으면 1x 디스플레이에서 텍스트가 그레이스케일 안티앨리어싱으로
+       렌더링돼 흐릿해 보인다. */
+    .reveal.active {
+      opacity: 1;
+      transform: none;
+    }
+
+
+    .reveal-from-left,
+    .reveal-from-right {
+      transition: opacity 2s cubic-bezier(0.22, 1, 0.36, 1), transform 2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-from-left {
+      transform: translateX(-300px);
+    }
+
+    .reveal-from-right {
+      transform: translateX(300px);
+    }
+
+    .reveal-from-left.active,
+    .reveal-from-right.active {
+      transform: none;
+    }
+
+    /* Cascade: value list items slide in one after another */
+    .reveal-cascade {
+      transform: translateX(-45px);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-cascade.active {
+      transform: none;
+    }
+
+    /* Flip-in: stat cards swing up like panels snapping into place.
+       Keyframes (not transitions) so nothing competes with the card hover transform.
+       `backwards` holds the start frame during the stagger delay and releases
+       the transform once finished, leaving hover free. */
+    @keyframes card-flip-in {
+      from {
+        opacity: 0;
+        transform: perspective(900px) rotateX(-35deg) translateY(50px) scale(0.9);
+        filter: blur(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: perspective(900px) rotateX(0deg) translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    .reveal-focus {
+      opacity: 0;
+      transform: none;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+    }
+
+    .reveal-focus.active {
+      opacity: 1;
+      animation: card-flip-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+    }
+
+    .stat-grid {
+      perspective: 1200px;
+    }
+
+    .stat-grid> :nth-child(2).active,
+    .stat-grid> :nth-child(3).active {
+      animation-delay: 0.12s;
+    }
+
+    .stat-grid> :nth-child(4).active,
+    .stat-grid> :nth-child(5).active {
+      animation-delay: 0.24s;
+    }
+
+    .stat-grid> :nth-child(6).active {
+      animation-delay: 0.36s;
+    }
+
+    .reveal-diagnostic {
+      transform: translateY(50px) scale(0.9);
+    }
+
+    .reveal-diagnostic.active {
+      transform: none;
+    }
+
+    .reveal-diagnostic:hover {
+      transform: translateY(-6px) scale(1.02);
+    }
+
+    .bg-loop-video {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.45;
+    }
+
+    /* Value section */
+    .value-item {
+      position: relative;
+      padding-left: var(--mf-radius-card);
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .value-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.35rem;
+      bottom: 0.35rem;
+      width: 2px;
+      border-radius: var(--mf-radius-pill);
+      background: currentColor;
+      opacity: 0.25;
+      transition: opacity 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .value-item:hover {
+      transform: translateX(6px);
+    }
+
+    .value-item:hover::before {
+      opacity: 1;
+      box-shadow: 0 0 10px 1px currentColor;
+    }
+
+    .stat-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+    }
+
+    /* Minimalism: the ambient colour wash is gone; the number carries the colour */
+    .stat-card::after {
+      content: none;
+    }
+
+    .stat-value {
+      font-family: var(--mf-font-mono);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    /* ── Features: auto-playing tab walkthrough ────────────────────
+       스크롤 잠금 없이 일반 섹션으로 흐른다. 패널은 타이머가 넘기고,
+       탭을 직접 누르면 잠시 멈췄다가 다시 자동 재생된다. */
+    .feature-track {
+      position: relative;
+    }
+
+    .feature-pin {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* overflow-x:auto 를 주면 세로도 auto 가 되어 hover 로 뜬 탭과 그림자가 잘린다.
+       패딩으로 넘칠 자리를 만들고 같은 크기의 음수 마진으로 원래 위치를 지킨다. */
+    .feature-rail {
+      display: flex;
+      justify-content: safe center;
+      gap: 0.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 0.75rem 0.5rem;
+      margin: -0.75rem -0.5rem -0.5rem;
+    }
+
+    .feature-rail::-webkit-scrollbar {
+      display: none;
+    }
+
+    .feature-tab {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.05rem;
+      border: none;
+      border-radius: var(--mf-radius-pill);
+      background: var(--mf-color-surface);
+      color: var(--mf-color-text-muted);
+      font-family: inherit;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      box-shadow:
+        inset 0 2px 1px rgba(255, 255, 255, 0.05),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.25);
+      transition: color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease,
+        transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .feature-tab .material-symbols-outlined {
+      font-size: 17px;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* 누를 수 있는 것임을 알리려면 떠오르고, 누르면 들어가야 한다 */
+    .feature-tab:hover {
+      background: var(--mf-color-surface-active);
+      color: var(--mf-color-text-bright);
+      transform: translateY(-2px);
+      box-shadow:
+        inset 0 2px 1px rgba(255, 255, 255, 0.09),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.22),
+        0 6px 14px rgba(0, 0, 0, 0.32);
+    }
+
+    .feature-tab:hover .material-symbols-outlined {
+      transform: scale(1.12);
+    }
+
+    .feature-tab:active {
+      transform: translateY(0);
+      box-shadow:
+        inset 0 3px 7px rgba(0, 0, 0, 0.45),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.05);
+    }
+
+    .feature-tab:focus-visible {
+      outline: none;
+      box-shadow:
+        inset 0 2px 1px rgba(255, 255, 255, 0.08),
+        0 0 0 2px rgba(125, 211, 252, 0.55);
+    }
+
+    .feature-tab.active {
+      background: var(--mf-color-primary-container);
+      color: var(--mf-color-primary);
+      box-shadow:
+        inset 0 3px 7px rgba(0, 0, 0, 0.5),
+        inset 0 -2px 1px rgba(125, 211, 252, 0.18),
+        0 0 0 1px rgba(125, 211, 252, 0.16);
+    }
+
+    /* 이미 선택된 탭은 자리를 지키고 색만 밝아진다 */
+    .feature-tab.active:hover {
+      transform: none;
+      background: var(--mf-color-primary-hover);
+      color: var(--mf-color-primary-bright);
+      box-shadow:
+        inset 0 3px 7px rgba(0, 0, 0, 0.45),
+        inset 0 -2px 1px rgba(125, 211, 252, 0.26),
+        0 0 0 1px rgba(125, 211, 252, 0.28);
+    }
+
+    .feature-progress {
+      /* 탭 열보다 좌우로 살짝만 넓게 */
+      margin-inline: -0.5rem;
+      height: 2px;
+      border-radius: var(--mf-radius-pill);
+      background: rgba(180, 197, 255, 0.05);
+      overflow: hidden;
+    }
+
+    /* 다음 전환까지 남은 시간을 바로 채운다. --auto-ms 는 JS가 매 전환마다 넣는다.
+       뒤끝은 배경에 녹고 진행하는 앞쪽만 옅게 밝아, 눈에 걸리지 않게 흐른다. */
+    .feature-progress span {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: var(--mf-radius-pill);
+      background: linear-gradient(90deg,
+          rgba(56, 189, 248, 0) 0%,
+          rgba(56, 189, 248, 0.28) 50%,
+          rgba(78, 222, 163, 0.45) 100%);
+    }
+
+    .feature-progress span.run {
+      animation:
+        featureFill var(--auto-ms, 2000ms) linear forwards,
+        featureBarIn 0.7s ease-out;
+    }
+
+    @keyframes featureFill {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes featureBarIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* 패널을 같은 그리드 칸에 겹쳐 쌓는다. 높이는 가장 큰 패널이 정한다. */
+    .feature-stage {
+      position: relative;
+      display: grid;
+      perspective: 1400px;
+      container-type: inline-size;
+    }
+
+    /* 좌우 이동 버튼 — 스테이지에 마우스가 들어올 때만 나타난다.
+       본문은 상단 정렬이라 세로 중앙에 두면 글자와 겹치지 않는다. */
+    .feature-nav {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      border: none;
+      border-radius: var(--mf-radius-pill);
+      background: rgba(26, 35, 56, 0.82);
+      backdrop-filter: blur(6px);
+      color: var(--mf-color-indigo);
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      box-shadow:
+        inset 0 2px 1px rgba(255, 255, 255, 0.06),
+        0 0 0 1px rgba(125, 211, 252, 0.14),
+        0 6px 18px rgba(0, 0, 0, 0.4);
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        background 0.25s ease, color 0.25s ease;
+    }
+
+    .feature-nav.prev {
+      left: 0;
+      transform: translate(-8px, -50%);
+    }
+
+    .feature-nav.next {
+      right: 0;
+      transform: translate(8px, -50%);
+    }
+
+    .feature-stage:hover .feature-nav,
+    .feature-nav:focus-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(0, -50%);
+    }
+
+    .feature-nav:hover {
+      background: var(--mf-color-primary-container);
+      color: var(--mf-color-primary);
+    }
+
+    /* 터치 기기엔 hover 가 없으니 항상 보인다 */
+    @media (hover: none) {
+      .feature-nav {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate(0, -50%);
+      }
+    }
+
+    /* 1단 배치에서는 스테이지 높이에 본문이 섞여 들어가 top:50% 가 이미지 위쪽에 걸린다.
+       스크린샷이 3:2 라 그 절반(= 스테이지 폭의 1/3)만큼 바닥에서 띄우면 이미지 정중앙이다. */
+    @media (max-width: 1023px) {
+      .feature-nav {
+        top: auto;
+        bottom: 33.34cqw;
+      }
+
+      .feature-nav.prev {
+        transform: translate(-8px, 50%);
+      }
+
+      .feature-nav.next {
+        transform: translate(8px, 50%);
+      }
+
+      .feature-stage:hover .feature-nav,
+      .feature-nav:focus-visible {
+        transform: translate(0, 50%);
+      }
+    }
+
+    @media (max-width: 1023px) and (hover: none) {
+      .feature-nav {
+        transform: translate(0, 50%);
+      }
+    }
+
+    .feature-panel {
+      grid-area: 1 / 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: start;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(60px);
+      filter: blur(12px);
+      transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0s linear 0.6s;
+    }
+
+    .feature-panel.active {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      filter: none;
+      transition-delay: 0s;
+    }
+
+    /* 나가는 패널은 반대쪽으로 빠지며 흐려진다. */
+    .feature-panel.leaving {
+      visibility: visible;
+      opacity: 0;
+      transform: translateX(-60px);
+      filter: blur(12px);
+      transition-delay: 0s;
+    }
+
+    /* 타이핑 중 제목이 비면 본문이 위로 딸려 올라가므로 한 줄 높이를 잡아둔다. */
+    .feature-panel h3 {
+      min-height: 1lh;
+    }
+
+    .feature-typing::after {
+      content: '';
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      margin-left: 3px;
+      vertical-align: -0.12em;
+      background: currentColor;
+      animation: featureCaret 0.9s steps(1) infinite;
+    }
+
+    @keyframes featureCaret {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* 스크린샷 등장 효과는 10종을 돌려 쓴다. JS 가 --shot-fx 에 이름을 넣고,
+       모든 키프레임은 transform: none(정면)으로 끝나 착지 상태가 같다. */
+    .feature-panel .feature-shot {
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+      transition: box-shadow 0.85s ease 0.06s;
+    }
+
+    /* :hover 는 .glass-panel 쪽 translateY 가 3D 를 덮어쓰므로 여기서 되잡는다 */
+    .feature-panel.active .feature-shot,
+    .feature-panel.active .feature-shot:hover {
+      box-shadow:
+        0 28px 64px rgba(0, 0, 0, 0.5),
+        0 6px 14px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(125, 211, 252, 0.1);
+      animation: var(--shot-fx, fxFly) 0.9s cubic-bezier(0.34, 1.28, 0.5, 1) 0.06s both;
+    }
+
+    /* 나가는 쪽은 반대로 젖혀지며 빠진다 */
+    .feature-panel.leaving .feature-shot {
+      animation: none;
+      transform: rotateY(14deg) scale(0.92);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    /* 1. 오른쪽에서 3D 로 젖혀지며 날아든다 */
+    @keyframes fxFly {
+      from {
+        transform: translateX(90px) rotateY(-22deg) scale(0.86);
+      }
+
+      to {
+        transform: none;
+      }
+    }
+
+    /* 2. 아래를 축으로 뒤로 눕혔다가 세운다 */
+    @keyframes fxFlipX {
+      from {
+        transform: rotateX(-52deg) scale(0.92);
+        transform-origin: center bottom;
+      }
+
+      to {
+        transform: none;
+        transform-origin: center bottom;
+      }
+    }
+
+    /* 3. 확대 + 흐림에서 초점이 잡힌다 */
+    @keyframes fxZoomBlur {
+      from {
+        transform: scale(1.28);
+        filter: blur(16px);
+      }
+
+      to {
+        transform: none;
+        filter: blur(0);
+      }
+    }
+
+    /* 4. 아래에서 밀려 올라온다 */
+    @keyframes fxRise {
+      from {
+        transform: translateY(80px) scale(0.94);
+      }
+
+      to {
+        transform: none;
+      }
+    }
+
+    /* 5. 기울어진 채 들어와 반대로 한 번 넘겼다 멈춘다 */
+    @keyframes fxSwing {
+      from {
+        transform: rotate(-9deg) scale(0.88);
+      }
+
+      55% {
+        transform: rotate(3.5deg) scale(1.01);
+      }
+
+      to {
+        transform: none;
+      }
+    }
+
+    /* 6. 접혀 있던 화면이 위에서부터 펼쳐진다 */
+    @keyframes fxUnfold {
+      from {
+        transform: scaleY(0.2);
+        transform-origin: center top;
+      }
+
+      to {
+        transform: none;
+        transform-origin: center top;
+      }
+    }
+
+    /* 7. 어긋났다가 제자리를 찾는다 */
+    @keyframes fxSkew {
+      from {
+        transform: translateX(-56px) skewX(9deg) scale(0.95);
+      }
+
+      60% {
+        transform: translateX(8px) skewX(-2deg);
+      }
+
+      to {
+        transform: none;
+      }
+    }
+
+    /* 8. 안쪽 깊은 곳에서 앞으로 튀어나온다 */
+    @keyframes fxDepth {
+      from {
+        transform: translateZ(-620px) rotateX(10deg);
+      }
+
+      to {
+        transform: none;
+      }
+    }
+
+    /* 9. 위에서 떨어져 한 번 튄다 */
+    @keyframes fxDrop {
+      from {
+        transform: translateY(-90px) rotate(5deg) scale(0.9);
+      }
+
+      62% {
+        transform: translateY(10px) rotate(-1.5deg) scale(1.01);
+      }
+
+      to {
+        transform: none;
+      }
+    }
+
+    /* 10. 원형으로 조리개가 열리듯 드러난다 */
+    @keyframes fxIris {
+      from {
+        clip-path: circle(12% at 50% 50%);
+        transform: scale(1.12);
+      }
+
+      to {
+        clip-path: circle(78% at 50% 50%);
+        transform: none;
+      }
+    }
+
+    /* 빛이 훑고 지나가는 결도 10종. data-sw 가 --sweep-bg / --sweep-fx 를 갈아끼운다.
+       알파는 0.05 안팎까지 낮춰 지나간 자국만 남게 한다. */
+    .feature-shot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0;
+      background: var(--sweep-bg,
+          linear-gradient(105deg, transparent 34%, rgba(125, 211, 252, 0.06) 47%,
+            rgba(255, 255, 255, 0.045) 51%, transparent 66%));
+    }
+
+    .feature-panel.active .feature-shot::after {
+      animation: var(--sweep-fx, swDiag) var(--sweep-dur, 1.3s) cubic-bezier(0.25, 0.9, 0.35, 1) 0.32s both;
+    }
+
+    .feature-shot[data-sw="1"] {
+      --sweep-fx: swDiagBack;
+      --sweep-bg: linear-gradient(75deg, transparent 34%, rgba(125, 211, 252, 0.06) 47%,
+          rgba(255, 255, 255, 0.045) 51%, transparent 66%);
+    }
+
+    .feature-shot[data-sw="2"] {
+      --sweep-fx: swVert;
+      --sweep-bg: linear-gradient(190deg, transparent 36%, rgba(125, 211, 252, 0.055) 49%,
+          rgba(255, 255, 255, 0.04) 53%, transparent 68%);
+    }
+
+    .feature-shot[data-sw="3"] {
+      --sweep-fx: swVertUp;
+      --sweep-bg: linear-gradient(10deg, transparent 36%, rgba(78, 222, 163, 0.05) 49%,
+          rgba(255, 255, 255, 0.04) 53%, transparent 68%);
+    }
+
+    .feature-shot[data-sw="4"] {
+      --sweep-fx: swBloom;
+      --sweep-dur: 1.5s;
+      --sweep-bg: radial-gradient(circle at 50% 50%, rgba(125, 211, 252, 0.07), transparent 62%);
+    }
+
+    .feature-shot[data-sw="5"] {
+      --sweep-fx: swEdge;
+      --sweep-bg: linear-gradient(90deg, rgba(125, 211, 252, 0.075), transparent 40%);
+    }
+
+    .feature-shot[data-sw="6"] {
+      --sweep-fx: swTwin;
+      --sweep-dur: 1.45s;
+      --sweep-bg: linear-gradient(100deg, transparent 28%, rgba(125, 211, 252, 0.05) 36%,
+          transparent 43%, transparent 53%, rgba(255, 255, 255, 0.045) 60%, transparent 68%);
+    }
+
+    .feature-shot[data-sw="7"] {
+      --sweep-fx: swPulse;
+      --sweep-dur: 1.6s;
+      --sweep-bg: linear-gradient(160deg, rgba(125, 211, 252, 0.045), rgba(78, 222, 163, 0.035));
+    }
+
+    .feature-shot[data-sw="8"] {
+      --sweep-fx: swWide;
+      --sweep-dur: 1.9s;
+      --sweep-bg: linear-gradient(100deg, transparent 18%, rgba(255, 255, 255, 0.04) 50%, transparent 82%);
+    }
+
+    .feature-shot[data-sw="9"] {
+      --sweep-fx: swCorner;
+      --sweep-dur: 1.5s;
+      --sweep-bg: radial-gradient(circle at 10% 6%, rgba(125, 211, 252, 0.08), transparent 55%);
+    }
+
+    @keyframes swDiag {
+      0% {
+        transform: translateX(-135%);
+        opacity: 0;
+      }
+
+      26% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateX(135%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes swDiagBack {
+      0% {
+        transform: translateX(135%);
+        opacity: 0;
+      }
+
+      26% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateX(-135%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes swVert {
+      0% {
+        transform: translateY(-135%);
+        opacity: 0;
+      }
+
+      26% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(135%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes swVertUp {
+      0% {
+        transform: translateY(135%);
+        opacity: 0;
+      }
+
+      26% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-135%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes swBloom {
+      0% {
+        transform: scale(0.4);
+        opacity: 0;
+      }
+
+      38% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1.55);
+        opacity: 0;
+      }
+    }
+
+    @keyframes swEdge {
+      0% {
+        transform: translateX(-12%);
+        opacity: 0;
+      }
+
+      32% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateX(6%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes swTwin {
+      0% {
+        transform: translateX(-145%);
+        opacity: 0;
+      }
+
+      24% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateX(145%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes swPulse {
+      0% {
+        opacity: 0;
+      }
+
+      45% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes swWide {
+      0% {
+        transform: translateX(-115%);
+        opacity: 0;
+      }
+
+      30% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateX(115%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes swCorner {
+      0% {
+        transform: scale(0.55);
+        opacity: 0;
+      }
+
+      36% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1.35);
+        opacity: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .feature-panel,
+      .feature-panel .feature-shot,
+      .feature-panel.active .feature-shot,
+      .feature-panel.active .feature-shot::after,
+      .feature-progress span.run {
+        transition-duration: 0.01s;
+        animation: none;
+        transform: none;
+        filter: none;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .feature-panel {
+        grid-template-columns: 0.48fr 1.52fr;
+        gap: 2.5rem;
+      }
+    }
+
+    /* 스크린샷은 3:2. 원본이 1536px이라 그 이상은 키우지 않는다. */
+    .feature-shot {
+      position: relative;
+      border-radius: var(--mf-radius-panel);
+      overflow: hidden;
+      aspect-ratio: 3 / 2;
+      width: min(100%, 96rem);
+      margin-inline: auto;
+    }
+
+    .feature-shot img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: var(--mf-radius-card);
+    }
+
+    /* ── Foolio AI ─────────────────────────────────────────────────
+       Suggested-query chips on the left, a live-feeling chat panel on the right. */
+    .foolio-chip {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 1rem 1.15rem;
+      border-radius: var(--mf-radius-card);
+      text-align: left;
+      cursor: pointer;
+      border: none;
+      background: var(--mf-color-surface);
+      color: var(--mf-color-text-secondary);
+      font-family: inherit;
+      font-size: 0.9375rem;
+      line-height: 1.45;
+      box-shadow:
+        0 7px 16px rgba(0, 0, 0, 0.26),
+        inset 0 2px 1px rgba(255, 255, 255, 0.055),
+        inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease, box-shadow 0.28s ease;
+    }
+
+    .foolio-chip:hover {
+      transform: translateX(6px);
+      color: var(--mf-color-text);
+    }
+
+    .foolio-chip.active {
+      color: var(--mf-color-primary);
+      box-shadow:
+        inset 0 3px 7px rgba(0, 0, 0, 0.5),
+        inset 0 -2px 1px rgba(125, 211, 252, 0.16),
+        0 0 0 1px rgba(125, 211, 252, 0.16);
+    }
+
+    .foolio-chip .material-symbols-outlined {
+      flex-shrink: 0;
+      font-size: 20px;
+      color: var(--mf-color-data-blue);
+    }
+
+    .foolio-window {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      /* Stretches to the query column on desktop; this is the floor on mobile */
+      min-height: 540px;
+    }
+
+    .foolio-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.1rem 1.35rem;
+      box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .foolio-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: var(--mf-radius-pill);
+      background: var(--mf-color-secondary);
+      box-shadow: 0 0 8px 1px rgba(78, 222, 163, 0.7);
+      animation: badge-blink 2s ease-in-out infinite;
+    }
+
+    .foolio-body {
+      /* min-height:0 is what lets a flex child actually scroll instead of stretching */
+      flex: 1 1 0;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      scroll-behavior: smooth;
+    }
+
+    .foolio-body::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .foolio-body::-webkit-scrollbar-thumb {
+      background: rgba(180, 197, 255, 0.15);
+      border-radius: var(--mf-radius-pill);
+    }
+
+    .foolio-msg {
+      max-width: 86%;
+      padding: 0.85rem 1.1rem;
+      border-radius: var(--mf-radius-card);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      animation: msg-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+    }
+
+    @keyframes msg-in {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .foolio-msg.user {
+      align-self: flex-end;
+      background: var(--mf-color-primary-container);
+      color: var(--mf-color-text);
+      border-bottom-right-radius: 0.4rem;
+      box-shadow: inset 0 2px 1px rgba(125, 211, 252, 0.14);
+    }
+
+    .foolio-msg.ai {
+      align-self: flex-start;
+      background: var(--mf-color-surface-raised);
+      color: var(--mf-color-text-secondary);
+      border-bottom-left-radius: 0.4rem;
+      box-shadow:
+        inset 0 2px 1px rgba(255, 255, 255, 0.06),
+        inset 0 -4px 9px rgba(0, 0, 0, 0.22);
+    }
+
+    .foolio-msg.ai b {
+      color: var(--mf-color-text);
+      font-weight: 600;
+    }
+
+    .foolio-msg .mono {
+      font-family: var(--mf-font-mono);
+      font-size: 0.85em;
+    }
+
+    .foolio-typing {
+      display: flex;
+      gap: 5px;
+      align-self: flex-start;
+      padding: 1rem 1.15rem;
+      border-radius: var(--mf-radius-card);
+      background: var(--mf-color-surface-raised);
+    }
+
+    .foolio-typing span {
+      width: 6px;
+      height: 6px;
+      border-radius: var(--mf-radius-pill);
+      background: var(--mf-color-primary);
+      animation: typing-bounce 1.2s ease-in-out infinite;
+    }
+
+    .foolio-typing span:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+
+    .foolio-typing span:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    @keyframes typing-bounce {
+
+      0%,
+      60%,
+      100% {
+        transform: translateY(0);
+        opacity: 0.4;
+      }
+
+      30% {
+        transform: translateY(-5px);
+        opacity: 1;
+      }
+    }
+
+    .foolio-input {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0 1.35rem 1.35rem;
+      padding: 0.85rem 1.15rem;
+      border-radius: var(--mf-radius-pill);
+      color: var(--mf-color-text-subtle);
+      font-size: 0.875rem;
+      box-shadow:
+        inset 0 3px 7px rgba(0, 0, 0, 0.45),
+        inset 0 -2px 1px rgba(255, 255, 255, 0.05);
+    }
+
+    /* ── FAQ accordion ─────────────────────────────────────────────
+       Closed items sit raised; the open one presses into the surface. */
+    .faq-item {
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--mf-radius-card);
+      padding: var(--mf-radius-panel) 1.75rem;
+      text-align: left;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: var(--mf-color-text);
+      font-family: inherit;
+      font-size: 1.0625rem;
+      font-weight: 600;
+      line-height: 1.5;
+      transition: color 0.25s ease;
+    }
+
+    .faq-q:hover {
+      color: var(--mf-color-primary);
+    }
+
+    .faq-item.open .faq-q {
+      color: var(--mf-color-primary);
+    }
+
+    .faq-icon {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: var(--mf-radius-pill);
+      font-size: 20px;
+      color: var(--mf-color-text-muted);
+      box-shadow:
+        inset 0 2px 1px rgba(255, 255, 255, 0.06),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.3);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(135deg);
+      color: var(--mf-color-primary);
+    }
+
+    /* Height is driven by JS so the open/close can actually animate */
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .faq-a p {
+      padding: 0 1.75rem 1.6rem;
+      margin: 0;
+      color: var(--mf-color-text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    /* 마지막 전환 블록이라 다른 패널과 같은 단색 대신, 대각 결 위에
+       위쪽에서 옅은 시안 기운이 내려앉게 해 살짝 구분해 준다. */
+    /* 양각은 유지하되 배경 영상이 비치도록 반투명하게. blur 로 살짝 눌러
+       뒤 캔들 패턴이 본문 글자와 부딪히지 않게 한다. */
+    .cta-card {
+      background:
+        radial-gradient(120% 78% at 50% -12%, rgba(56, 189, 248, 0.05), transparent 62%),
+        linear-gradient(158deg, rgba(30, 41, 66, 0.62) 0%, rgba(21, 29, 51, 0.7) 100%);
+      backdrop-filter: blur(3px);
+      box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.4),
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 2px 1px rgba(125, 211, 252, 0.09),
+        inset 0 -8px 14px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(125, 211, 252, 0.05);
+    }
+
+    /* .glass-panel:not(.tilt-card):hover 가 (0,3,0) 이라 같은 무게로 맞춰야 이긴다 */
+    .glass-panel.cta-card:hover {
+      box-shadow:
+        0 22px 42px rgba(0, 0, 0, 0.45),
+        0 6px 12px rgba(0, 0, 0, 0.22),
+        inset 0 2px 1px rgba(125, 211, 252, 0.13),
+        inset 0 -8px 14px rgba(0, 0, 0, 0.28),
+        0 0 0 1px rgba(125, 211, 252, 0.08);
+    }
+
+    /* ── Auto-sync hub ─────────────────────────────────────────────
+       브로커 노드가 두 타원 궤도에 서고, 패킷이 선을 타고 중앙으로 모인다.
+       SVG 는 JS(#integrations-hub)가 생성하고 viewBox 로 반응형 스케일. */
+    .integrations-hub svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      font-family: inherit;
+    }
+
+    .integrations-hub .integrations-label {
+      font-size: 12px;
+      fill: var(--mf-color-text-muted);
+    }
+
+    .integrations-hub .integrations-mono {
+      font-weight: 700;
+    }
+
+    /* 등장 연출 — 각 노드는 중앙 반대 방향(=자기가 선 쪽) 화면 밖에서 날아든다.
+       --fx/--fy 는 JS 가 노드마다 계산해 인라인으로 넣는다. */
+    .integrations-node {
+      opacity: 0;
+      transform: translate(var(--fx, 0), var(--fy, 0)) scale(0.55);
+      transition:
+        transform 0.85s cubic-bezier(0.22, 1.05, 0.36, 1),
+        opacity 0.5s ease;
+    }
+
+    .integrations-hub.in .integrations-node {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* 선과 패킷은 노드가 자리를 잡은 뒤 뒤따라 켜진다 */
+    .integrations-links,
+    .integrations-packets {
+      opacity: 0;
+      transition: opacity 0.7s ease 1.1s;
+    }
+
+    .integrations-hub.in .integrations-links,
+    .integrations-hub.in .integrations-packets {
+      opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .integrations-hub .integrations-packet,
+      .integrations-hub .integrations-pulse {
+        display: none;
+      }
+
+      .integrations-node,
+      .integrations-links,
+      .integrations-packets {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    /* ── CTA ticker bubbles ────────────────────────────────────────
+       Clay pellets drift up through the panel and dissolve near the top. */
+    .cta-bubbles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: inherit;
+    }
+
+    .cta-bubble {
+      position: absolute;
+      bottom: -110px;
+      left: var(--x);
+      width: var(--size);
+      height: var(--size);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      animation: bubble-rise var(--dur, 18s) linear infinite;
+      animation-delay: var(--delay, 0s);
+      will-change: transform, opacity;
+    }
+
+    /* The source SVGs carry a solid white disc, so tone it down before it ever paints */
+    .cta-bubble img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: saturate(0.7) brightness(0.85);
+    }
+
+    /* Rises, then thins out steadily on the way up until it dissolves at the top */
+    @keyframes bubble-rise {
+      0% {
+        transform: translate3d(0, 0, 0) scale(0.72);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.22;
+      }
+
+      35% {
+        opacity: 0.18;
+      }
+
+      50% {
+        transform: translate3d(var(--drift, 20px), -430px, 0) scale(1);
+        opacity: 0.13;
+      }
+
+      75% {
+        opacity: 0.06;
+      }
+
+      100% {
+        transform: translate3d(0, -880px, 0) scale(1.08);
+        opacity: 0;
+      }
+    }
+
+    /* 3D Tilt Container */
+    .tilt-container {
+      perspective: 1000px;
+    }
+
+    .tilt-card {
+      transition: transform 0.1s ease-out;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+  
